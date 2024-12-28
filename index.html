@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es" style="scroll-behavior: smooth;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FourBlue</title>
+    <link rel="stylesheet" href="./tailwind.css" />
+  </head>
+
+  <body>
+    <main>
+      <!-- Fixed top navigation bar -->
+      <div
+        id="navbar"
+        style="
+          z-index: 20;
+          left: 0;
+          right: 0;
+          pointer-events: auto;
+          transition: background-color 0.8s ease;
+        "
+      >
+        <!-- Navigation Container -->
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        >
+          <!-- Logo -->
+          <a href="" style="text-decoration: none;">
+            <img src="images/Fourblue.png" width="100" alt="FourBlue Logo" />
+          </a>
+
+          <!-- Navigation -->
+          <nav
+            style="
+              display: flex;
+              gap: 1rem;
+            "
+          >
+            <style>
+              /* Replicate hover:-mx-2.5 on <a> by default + hover */
+              a.nav-link {
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1.5px solid currentColor;
+                padding: 1.25rem;
+                font-size: 1.125rem;
+                text-align: center;
+                display: inline-flex;
+                align-items: center;
+                border-radius: 9999px;
+                height: 42px;
+                font-weight: 550;
+                transition-duration: 0.2s;
+                margin-left: 0;   /* default margin (was 0) */
+                margin-right: 0;  /* default margin (was 0) */
+              }
+              a.nav-link:hover {
+                margin-left: -0.625rem;  /* -mx-2.5 in rem */
+                margin-right: -0.625rem; /* -mx-2.5 in rem */
+              }
+
+              /* Replicate w-0 + group-hover:w-5 on the <span> inside the link */
+              a.nav-link span.chevron {
+                width: 0;  /* w-0 */
+                font-family: BasierSquarrow, sans-serif;
+                font-weight: 550;
+                overflow: hidden;
+                transition-property: all;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 0.2s;
+              }
+              a.nav-link:hover span.chevron {
+                width: 1.25rem; /* w-5 => 1.25rem => 20px */
+              }
+            </style>
+            <a
+              class="nav-link"
+              href="#somos"
+            >
+              Quiénes somos
+              <span class="chevron">></span>
+            </a>
+            <a
+              class="nav-link"
+              href="#ofrecemos"
+            >
+              Qué ofrecemos
+              <span class="chevron">></span>
+            </a>
+            <a
+              class="nav-link"
+              href="#trabaja"
+            >
+              Trabaja con nosotros
+              <span class="chevron">></span>
+            </a>
+            <a
+              class="nav-link"
+              href="#contacto"
+            >
+              Contacto
+              <span class="chevron">></span>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Optional: Minimal JS for scrolling behavior -->
+      <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+          if (currentScroll < 120) {
+            navbar.classList.remove('bg-white');
+            navbar.classList.add('bg-transparent');
+          } else {
+            navbar.classList.remove('bg-transparent');
+            navbar.classList.add('bg-white');
+          }
+        });
+      </script>
+
+      <!-- Header with hero video -->
+      <header style="position: relative;">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding-top: 12rem;
+            padding-bottom: 12rem;
+            min-height: 100vh;
+            color: white;
+            width: 100%;
+          "
+        >
+          <!-- Background Video Container -->
+          <div
+            style="
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              z-index: -10;
+            "
+          >
+            <video
+              playsinline
+              muted
+              autoplay
+              loop
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              "
+            >
+              <source src="images/torres-espacio.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div
+              style="
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: black;
+                opacity: 0.3;
+              "
+            ></div>
+          </div>
+
+          <!-- Inner Container -->
+          <div
+            style="
+              padding-left: 3rem;
+              padding-right: 3rem;
+              width: 100%;
+              margin-left: auto;
+              margin-right: auto;
+              max-width: 1256px;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 2.5rem;
+              "
+              _uid="d591b5a0-6c97-4a12-9994-ddb0b3d232c5"
+            >
+              <!-- For small screens, the above classes might differ, but this is a rough approximation -->
+
+              <div
+                style="
+                  grid-column: 1 / span 4; 
+                  display: flex;
+                  flex-direction: column;
+                "
+              >
+                <div style="width: 100%;">
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      min-height: 100%;
+                    "
+                    _uid="819f8d68-846a-4fff-bcc0-4b77eb27e584"
+                  >
+                    <div
+                      style="
+                        padding-bottom: 1rem;
+                        margin-bottom: -1rem;
+                        overflow: visible;
+                        opacity: 1;
+                      "
+                    >
+                      <div style="transform: none;">
+                        <h1
+                          style="
+                            font-size: 54px;
+                            font-weight: 500;
+                            line-height: 1;
+                            letter-spacing: -0.04em;
+                            color: white;
+                            white-space: pre-line;
+                            margin: 0;
+                          "
+                          _uid="78ac1d43-80ac-4742-aa1c-51e947a0301d"
+                        >
+                          Bienvenido a FourBlue
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Section: Quiénes somos -->
+      <section id="somos" style="width: 100%; margin: 0 auto;">
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+            text-align: center;
+          "
+        >
+          <h2
+            style="
+              font-size: 54px;
+              font-weight: 500;
+              line-height: 0.9;
+              margin-bottom: 2rem;
+              margin-top: 0;
+            "
+          >
+            Quiénes somos
+          </h2>
+        </div>
+
+        <!-- Content Block -->
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 2rem;
+              align-items: center;
+            "
+          >
+            <!-- Video -->
+            <div
+              style="
+                position: relative;
+                width: 100%;
+                max-width: 1280px;
+                height: 508px;
+                overflow: hidden;
+              "
+            >
+              <video
+                playsinline
+                muted
+                autoplay
+                loop
+                style="
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  height: auto;
+                  object-fit: cover;
+                  max-width: 85%;
+                "
+              >
+                <source src="images/somos.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            <!-- Text content -->
+            <div
+              style="
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              "
+            >
+              <h4
+                style="
+                  font-size: 1.875rem; /* 3xl base */
+                  font-weight: 500;
+                  margin: 0;
+                "
+              >
+                Servicios de Tecnología SAP Experiencia y Excelencia
+              </h4>
+              <p
+                style="
+                  font-size: 18px;
+                  line-height: 1.6;
+                  margin: 0;
+                "
+              >
+                Somos una empresa de reciente creación de servicios de consultoría de tecnología SAP, especializada en el asesoramiento e implementación de proyectos de transformación “end to end” en grandes compañías. FOUR BLUE surge por un equipo fundador  con más de 20 años de experiencia real en proyectos de tecnología SAP con especial experiencia en proyectos dentro del grupo BBVA. Nuestro objetivo es ofrecer un servicio basado en nuestra experiencia real y demostrada en nuestros clientes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Qué ofrecemos -->
+      <section
+        id="ofrecemos"
+        style="
+          --tw-bg-opacity: 1;
+          background-color: rgb(246 246 246 / var(--tw-bg-opacity));
+          width: 100%;
+          margin: 0 auto;
+          display: block;
+        "
+      >
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+            text-align: center;
+          "
+        >
+          <h2
+            style="
+              font-size: 54px;
+              font-weight: 500;
+              line-height: 0.9;
+              margin-bottom: 4rem;
+              margin-top: 0;
+            "
+          >
+            Qué ofrecemos
+          </h2>
+        </div>
+
+        <!-- Content Block -->
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 2rem;
+            "
+          >
+            <!-- Image block -->
+            <div
+              style="
+                flex-shrink: 0;
+                width: 50%;
+                max-width: 50vw;
+                height: 50vh;
+                background-image: url('images/rocks.png');
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+
+            <!-- Text content -->
+            <div
+              style="
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <h4
+                  style="
+                    font-size: 1.875rem; /* 3xl base */
+                    font-weight: 500;
+                    margin: 0;
+                  "
+                >
+                  Nuestra Visión
+                </h4>
+                <button
+                  id="toggle-text-button"
+                  class="animate-button"
+                  style="
+                    margin-top: 20px;
+                    width: 50px;
+                    height: 50px;
+                    background-color: transparent;
+                    border: 2px solid black;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                  "
+                >
+                  <style>
+                    @keyframes pulse {
+                      0% {
+                        transform: scale(1);
+                        border-color: black;
+                      }
+                      50% {
+                        transform: scale(1.2);
+                        border-color: rgba(0, 0, 0, 0.5);
+                      }
+                      100% {
+                        transform: scale(1);
+                        border-color: black;
+                      }
+                    }
+
+                    .animate-button {
+                      animation: pulse 1.5s infinite ease-in-out;
+                    }
+
+                    .animate-button:hover {
+                      animation: none; /* Disable animation on hover for clarity */
+                      transform: scale(1.3); /* Grow slightly when hovered */
+                      transition: transform 0.3s ease-in-out;
+                    }
+                  </style>
+                  <span
+                    style="
+                      display: block;
+                      width: 0;
+                      height: 0;
+                      border-top: 8px solid transparent;
+                      border-bottom: 8px solid transparent;
+                      border-left: 12px solid black;
+                    "
+                  ></span>
+                </button>
+              </div>
+              <p
+                id="toggle-text"
+                style="
+                  font-size: 18px;
+                  opacity: 1;
+                  transition: opacity 0.5s ease;
+                  margin: 0;
+                "
+              >
+                El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Trabaja con nosotros -->
+      <section
+        id="trabaja"
+        style="
+          padding-top: 8rem;
+          padding-bottom: 8rem;
+        "
+      >
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 2rem;
+            "
+          >
+            <!-- Left column -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 50%; /* approximate */
+              "
+            >
+              <h3
+                style="
+                  font-size: 2.25rem;
+                  font-weight: 500;
+                  margin-bottom: 1.5rem;
+                  margin-top: 0;
+                "
+              >
+                Trabaja con nosotros
+              </h3>
+              <p
+                style="
+                  font-size: 1.5rem;
+                  font-weight: 500;
+                  margin: 0;
+                "
+              >
+                Puedes enviarnos tu CV a la dirección de email
+                <a
+                  href="mailto:info@fourblue.com"
+                  style="text-decoration: underline; color: inherit;"
+                  >info@fourblue.com</a
+                >
+              </p>
+            </div>
+
+            <!-- Right column -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 50%; /* approximate */
+              "
+            >
+              <!-- Using <p> for text block -->
+              <p
+                style="
+                  font-size: 1.125rem; /* ~ text-lg to text-xl */
+                  line-height: 1.6;
+                  margin: 0;
+                "
+              >
+                <h4
+                  style="
+                    font-size: 1.875rem;
+                    font-weight: 500;
+                    margin: 0 0 1rem 0;
+                  "
+                >
+                  Vacantes disponibles:
+                </h4>
+                <br />
+                CONSULTORES FUNCIONALES LOGISTICA<br />
+                Consultores SAP con un mínimo de 6 años de experiencia en algunos
+                estos módulos: MM, SD, PP y/o WM, para nuestra oficina de Madrid.<br />
+                Se valorarán conocimientos en otras áreas SAP (financieras o
+                logísticas), experiencia en S/4 HANA y nivel de inglés alto.<br /><br />
+
+                CONSULTORES FUNCIONALES FINANZAS<br />
+                Consultores SAP con un mínimo de 6 años de experiencia en FI y/o CO,
+                para nuestra oficina de Madrid.<br />
+                Se valorarán conocimientos en otras áreas SAP (logísticas o
+                financieras), experiencia en S/4 HANA y nivel de inglés alto.<br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        id="contacto"
+        style="
+          width: 100%;
+          font-size: 1.25rem; /* text-xl ~ 1.25rem */
+          --tw-bg-opacity: 1;
+          background-color: rgb(29 29 27 / var(--tw-bg-opacity));
+          padding-top: 5rem;
+          padding-bottom: 5rem;
+          color: white;
+        "
+      >
+        <div
+          style="
+            padding-left: 3rem;
+            padding-right: 3rem;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1256px;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            color: white;
+          "
+        >
+          <div
+            style="
+              display: grid;
+              grid-auto-flow: row;
+              grid-template-columns: repeat(1, minmax(0, 1fr));
+              gap: 2rem;
+            "
+          >
+            <!-- Social + "Follow us" -->
+            <div
+              style="
+                grid-column: span 1;
+              "
+            >
+              <p
+                style="
+                  font-size: 0.875rem;
+                  color: #929292;
+                  margin-bottom: 1rem;
+                  margin-top: 0;
+                "
+              >
+                Follow us
+              </p>
+              <div
+                style="
+                  display: flex;
+                  gap: 1rem;
+                "
+              >
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  style="
+                    width: 50px;
+                    height: 50px;
+                    border: 1px solid #6b7280; /* gray-500 approx */
+                    border-radius: 9999px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    color: inherit;
+                  "
+                  onmouseover="this.style.borderColor='white';"
+                  onmouseout="this.style.borderColor='#6b7280';"
+                >
+                  <!-- LinkedIn icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4.98 3.5c0 1.38-1.11 2.5-2.49 2.5S0 4.88 0 3.5 
+                         1.11 1 2.49 1 4.98 2.12 4.98 3.5zM.2 7h4.77V24H.2V7zM8.4 
+                         7h4.58v2.54h.06c.64-1.2 2.21-2.47 4.56-2.47 4.88 0 
+                         5.78 3.2 5.78 7.36V24H18.6v-6.9c0-1.64-.03-3.74-2.28-3.74-2.28 
+                         0-2.63 1.78-2.63 3.62V24H8.4V7z"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Contact info -->
+            <div
+              style="
+                grid-column: span 1;
+                display: grid;
+              "
+            >
+              <div>
+                <p
+                  style="
+                    font-size: 1rem;
+                    color: #929292;
+                    padding-bottom: 1rem;
+                    margin: 0;
+                    border-bottom: 1px solid #494949;
+                  "
+                >
+                  Contacto
+                </p>
+                <p
+                  style="
+                    margin-top: 1rem;
+                    margin-bottom: 0;
+                  "
+                >
+                  <a
+                    href="mailto:info@fourblue.com"
+                    style="text-decoration: underline; color: inherit;"
+                    >info@fourblue.com</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              font-size: 0.875rem;
+              padding-top: 2rem;
+              margin: 0;
+            "
+          >
+            &copy; <span id="year"></span> FourBlue. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Optional: Minimal JS for dynamic year + text toggle logic -->
+    <script>
+      // Toggle "Nuestra Visión" paragraphs
+      const toggleText = document.getElementById("toggle-text");
+      const toggleButton = document.getElementById("toggle-text-button");
+
+      const texts = [
+        "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
+        "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
+        "El cambio se ha convertido en el principal motor de evolución de los mercados. Las compañías, para garantizar el éxito de sus proyectos, buscan cada vez más colaboradores con una sólida y contrastada experiencia en proyectos de transformación, que sean capaces de hablar su mismo idioma y que sean sensibles a sus necesidades reales. En FOUR BLUE abordamos los proyectos de nuestros clientes bajo una perspectiva global e integradora, basándonos en los inductores fundamentales del cambio.",
+        "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
+      ];
+
+      let currentIndex = 0;
+
+      toggleButton.addEventListener("click", () => {
+        toggleText.style.opacity = 0; // Fade out
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % texts.length; // Next text
+          toggleText.textContent = texts[currentIndex];
+          toggleText.style.opacity = 1; // Fade in
+        }, 300);
+      });
+
+      // Dynamic Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
