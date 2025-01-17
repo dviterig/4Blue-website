@@ -10,107 +10,84 @@
   <body>
     <main>
       <!-- Fixed top navigation bar -->
-      <div
-        id="navbar"
-        style="
-          z-index: 20;
-          left: 0;
-          right: 0;
-          pointer-events: auto;
-          transition: background-color 0.4s ease;
-        "
-      >
-        <!-- Navigation Container -->
-        <div
+      <div id="navbar">
+        <!-- Logo -->
+        <a href="">
+          <img src="images/Fourblue.png" width="100" alt="FourBlue Logo" />
+        </a>
+
+        <!-- Navigation -->
+        <nav
           style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 1rem;
           "
         >
-          <!-- Logo -->
-          <a href="" style="text-decoration: none;">
-            <img src="images/Fourblue.png" width="100" alt="FourBlue Logo" />
-          </a>
+          <style>
+            /* Replicate hover:-mx-2.5 on <a> by default + hover */
+            a.nav-link {
+              transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+              border: 1.5px solid currentColor;
+              padding: 1.25rem;
+              font-size: 1.125rem;
+              text-align: center;
+              display: inline-flex;
+              align-items: center;
+              border-radius: 9999px;
+              height: 42px;
+              font-weight: 550;
+              transition-duration: 0.2s;
+              margin-left: 0;   /* default margin (was 0) */
+              margin-right: 0;  /* default margin (was 0) */
+            }
+            a.nav-link:hover {
+              margin-left: -0.625rem;  /* -mx-2.5 in rem */
+              margin-right: -0.625rem; /* -mx-2.5 in rem */
+            }
 
-          <!-- Navigation -->
-          <nav
-            style="
-              display: flex;
-              gap: 1rem;
-            "
+            /* Replicate w-0 + group-hover:w-5 on the <span> inside the link */
+            a.nav-link span.chevron {
+              width: 0;  /* w-0 */
+              font-family: BasierSquarrow, sans-serif;
+              font-weight: 550;
+              overflow: hidden;
+              transition-property: all;
+              transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+              transition-duration: 0.2s;
+            }
+            a.nav-link:hover span.chevron {
+              width: 1.25rem; /* w-5 => 1.25rem => 20px */
+            }
+          </style>
+          <a
+            class="nav-link"
+            href="#somos"
           >
-            <style>
-              /* Replicate hover:-mx-2.5 on <a> by default + hover */
-              a.nav-link {
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                border: 1.5px solid currentColor;
-                padding: 1.25rem;
-                font-size: 1.125rem;
-                text-align: center;
-                display: inline-flex;
-                align-items: center;
-                border-radius: 9999px;
-                height: 42px;
-                font-weight: 550;
-                transition-duration: 0.2s;
-                margin-left: 0;   /* default margin (was 0) */
-                margin-right: 0;  /* default margin (was 0) */
-              }
-              a.nav-link:hover {
-                margin-left: -0.625rem;  /* -mx-2.5 in rem */
-                margin-right: -0.625rem; /* -mx-2.5 in rem */
-              }
-
-              /* Replicate w-0 + group-hover:w-5 on the <span> inside the link */
-              a.nav-link span.chevron {
-                width: 0;  /* w-0 */
-                font-family: BasierSquarrow, sans-serif;
-                font-weight: 550;
-                overflow: hidden;
-                transition-property: all;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 0.2s;
-              }
-              a.nav-link:hover span.chevron {
-                width: 1.25rem; /* w-5 => 1.25rem => 20px */
-              }
-            </style>
-            <a
-              class="nav-link"
-              href="#somos"
-            >
-              Quiénes somos
-              <span class="chevron">></span>
-            </a>
-            <a
-              class="nav-link"
-              href="#ofrecemos"
-            >
-              Qué ofrecemos
-              <span class="chevron">></span>
-            </a>
-            <a
-              class="nav-link"
-              href="#trabaja"
-            >
-              Trabaja con nosotros
-              <span class="chevron">></span>
-            </a>
-            <a
-              class="nav-link"
-              href="#contacto"
-            >
-              Contacto
-              <span class="chevron">></span>
-            </a>
-          </nav>
-        </div>
+            Quiénes somos
+            <span class="chevron">></span>
+          </a>
+          <a
+            class="nav-link"
+            href="#ofrecemos"
+          >
+            Qué ofrecemos
+            <span class="chevron">></span>
+          </a>
+          <a
+            class="nav-link"
+            href="#trabaja"
+          >
+            Trabaja con nosotros
+            <span class="chevron">></span>
+          </a>
+          <a
+            class="nav-link"
+            href="#contacto"
+          >
+            Contacto
+            <span class="chevron">></span>
+          </a>
+        </nav>
       </div>
 
       <!-- Optional: Minimal JS for scrolling behavior -->
@@ -128,17 +105,15 @@
         window.addEventListener('scroll', () => {
           const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-          // For 100vh, multiply oneVH by 100:
           if (currentScroll <= (oneVH * 100)/3) {
             navbar.classList.remove('bg-white', 'bg-opacity');
             navbar.classList.add('bg-transparent');
           }
-          // For 200vh, compare to oneVH * 200, and so on.
           else if (currentScroll > (oneVH * 100)/3 && currentScroll < oneVH * 200) {
             navbar.classList.remove('bg-opacity', 'bg-transparent');
             navbar.classList.add('bg-white');
           }
-          else if (currentScroll > oneVH * 200 && currentScroll < oneVH * 300) {
+          else if (currentScroll >= oneVH * 200 && currentScroll < oneVH * 300) {
             navbar.classList.remove('bg-white', 'bg-transparent');
             navbar.classList.add('bg-opacity');
           }
@@ -273,113 +248,39 @@
       </header>
 
       <!-- Section: Quiénes somos -->
-      <section
-        id="somos"
-        style="
-          width: 100%;
-          margin: 0 auto;
-          min-height: 100vh;
-        "
-      >
-        <div
-          style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1256px;
-            text-align: center;
-          "
+      <section id="somos">
+        <h2>
+          Quiénes somos
+        </h2>
+
+        <!-- Video -->
+        <video id="video-somos"
+          playsinline
+          muted
+          autoplay
+          loop
         >
-          <h2
-            style="
-              font-size: 54px;
-              font-weight: 500;
-              line-height: 0.9;
-              margin-bottom: 2rem;
-              margin-top: 0;
-            "
-          >
-            Quiénes somos
-          </h2>
-        </div>
+          <source src="images/somos.mp4" type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
 
         <!-- Content Block -->
-        <div
-          style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1256px;
-          "
-        >
-          <div
+        <article id="content-somos">
+          <!-- Text content -->
+          <h4
             style="
-              display: flex;
-              flex-direction: column;
-              gap: 2rem;
-              align-items: center;
+              font-size: 1.875rem; /* 3xl base */
+              font-weight: 500;
+              margin: 0;
+              margin-top: 20px;
             "
           >
-            <!-- Video -->
-            <div
-              style="
-                position: relative;
-                width: 100%;
-                overflow: hidden;
-              "
-            >
-              <video
-                playsinline
-                muted
-                autoplay
-                loop
-                style="
-                  display: block;
-                  margin-left: auto;
-                  margin-right: auto;
-                  height: auto;
-                  object-fit: cover;
-                  max-width: 85%;
-                "
-              >
-                <source src="images/somos.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-
-            <!-- Text content -->
-            <div
-              style="
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-              "
-            >
-              <h4
-                style="
-                  font-size: 1.875rem; /* 3xl base */
-                  font-weight: 500;
-                  margin: 0;
-                "
-              >
-                Servicios de Tecnología SAP Experiencia y Excelencia
-              </h4>
-              <p
-                style="
-                  font-size: 18px;
-                  line-height: 1.6;
-                  margin: 0;
-                "
-              >
-                Somos una empresa de reciente creación de servicios de consultoría de tecnología SAP, especializada en el asesoramiento e implementación de proyectos de transformación “end to end” en grandes compañías. FOUR BLUE surge por un equipo fundador  con más de 20 años de experiencia real en proyectos de tecnología SAP con especial experiencia en proyectos dentro del grupo BBVA. Nuestro objetivo es ofrecer un servicio basado en nuestra experiencia real y demostrada en nuestros clientes.
-              </p>
-            </div>
-          </div>
-        </div>
+            Servicios de Tecnología SAP Experiencia y Excelencia
+          </h4>
+          <p>
+            Somos una empresa de reciente creación de servicios de consultoría de tecnología SAP, especializada en el asesoramiento e implementación de proyectos de transformación “end to end” en grandes compañías. FOUR BLUE surge por un equipo fundador  con más de 20 años de experiencia real en proyectos de tecnología SAP con especial experiencia en proyectos dentro del grupo BBVA. Nuestro objetivo es ofrecer un servicio basado en nuestra experiencia real y demostrada en nuestros clientes.
+          </p>
+        </article>
       </section>
 
       <!-- Section: Qué ofrecemos -->
@@ -387,265 +288,159 @@
         id="ofrecemos"
         style="
           background-color: rgb(246, 246, 246);
-          width: 100%;
-          margin: 0 auto;
-          display: block;
-          min-height: 100vh;
         "
       >
-        <div
-          style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1256px;
-            text-align: center;
-          "
-        >
-          <h2
-            style="
-              font-size: 54px;
-              font-weight: 500;
-              line-height: 0.9;
-              margin-bottom: 4rem;
-              margin-top: 0;
-            "
-          >
-            Qué ofrecemos
-          </h2>
-        </div>
+        <h2>
+          Qué ofrecemos
+        </h2>
 
         <!-- Content Block -->
-        <div
-          style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1256px;
-          "
-        >
+        <article id="content-ofrecemos">
+          <!-- Image block -->
+          <img src="images/rocks.png">
+
+          <!-- Text content -->
           <div
             style="
+              width: 100%;
               display: flex;
-              flex-direction: row;
-              align-items: center;
-              gap: 2rem;
+              flex-direction: column;
+              gap: 1rem;
             "
           >
-            <!-- Image block -->
-            <div
-              style="
-                flex-shrink: 0;
-                width: 50%;
-                max-width: 50vw;
-                height: 50vh;
-                background-image: url('images/rocks.png');
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-              "
-            ></div>
-
-            <!-- Text content -->
-            <div
-              style="
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-              "
-            >
-              <div
+            <div style="display: flex;">
+              <h4
                 style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                "
-              >
-                <h4
-                  style="
-                    font-size: 1.875rem; /* 3xl base */
-                    font-weight: 500;
-                    margin: 0;
-                  "
-                >
-                  Nuestra Visión
-                </h4>
-                <button
-                  id="toggle-text-button"
-                  class="animate-button"
-                  style="
-                    margin-top: 20px;
-                    width: 50px;
-                    height: 50px;
-                    background-color: transparent;
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                  "
-                >
-                  <style>
-                    @keyframes pulse {
-                      0% {
-                        transform: scale(1);
-                        border-color: black;
-                      }
-                      50% {
-                        transform: scale(1.2);
-                        border-color: rgba(0, 0, 0, 0.5);
-                      }
-                      100% {
-                        transform: scale(1);
-                        border-color: black;
-                      }
-                    }
-
-                    .animate-button {
-                      animation: pulse 1.5s infinite ease-in-out;
-                    }
-
-                    .animate-button:hover {
-                      animation: none; /* Disable animation on hover for clarity */
-                      transform: scale(1.3); /* Grow slightly when hovered */
-                      transition: transform 0.3s ease-in-out;
-                    }
-                  </style>
-                  <span
-                    style="
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      border-top: 8px solid transparent;
-                      border-bottom: 8px solid transparent;
-                      border-left: 12px solid black;
-                    "
-                  ></span>
-                </button>
-              </div>
-              <p
-                id="toggle-text"
-                style="
-                  font-size: 18px;
-                  opacity: 1;
-                  transition: opacity 0.5s ease;
+                  font-size: 1.875rem; /* 3xl base */
+                  font-weight: 500;
                   margin: 0;
                 "
               >
-                El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.
-              </p>
+                Nuestra Visión
+              </h4>
+              <button
+                id="toggle-text-button"
+                class="animate-button"
+              >
+                <style>
+                  @keyframes pulse {
+                    0% {
+                      transform: scale(1);
+                      border-color: black;
+                    }
+                    50% {
+                      transform: scale(1.2);
+                      border-color: rgba(0, 0, 0, 0.5);
+                    }
+                    100% {
+                      transform: scale(1);
+                      border-color: black;
+                    }
+                  }
+
+                  .animate-button {
+                    animation: pulse 1.5s infinite ease-in-out;
+                  }
+
+                  .animate-button:hover {
+                    animation: none; /* Disable animation on hover for clarity */
+                    transform: scale(1.3); /* Grow slightly when hovered */
+                    transition: transform 0.3s ease-in-out;
+                  }
+
+                  svg {
+                    width: 24px;
+                    height: 24px;
+                  }
+                </style>
+                <!-- Replace Triangle with SVG Arrow -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="black"
+                  style="width: 24px; height: 24px;"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </button>
             </div>
+            <p id="toggle-text">
+              El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.
+            </p>
           </div>
-        </div>
+        </article>
       </section>
 
       <!-- Section: Trabaja con nosotros -->
-      <section
-        id="trabaja"
-        style="
-          padding-top: 8rem;
-          padding-bottom: 8rem;
-          min-height: 100vh;
-        "
-      >
-        <div
-          style="
-            padding-left: 3rem;
-            padding-right: 3rem;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 1256px;
-          "
-        >
+      <section id="trabaja">
+        <!-- Content Block -->
+        <article id="content-trabaja">
+          <!-- Left column -->
           <div
             style="
               display: flex;
-              flex-direction: row;
-              align-items: center;
-              gap: 2rem;
+              flex-direction: column;
             "
           >
-            <!-- Left column -->
-            <div
+            <h3
               style="
-                display: flex;
-                flex-direction: column;
-                width: 50%; /* approximate */
+                font-size: 2.25rem;
+                font-weight: 500;
+                margin-bottom: 1.5rem;
+                margin-top: 0;
               "
             >
-              <h3
-                style="
-                  font-size: 2.25rem;
-                  font-weight: 500;
-                  margin-bottom: 1.5rem;
-                  margin-top: 0;
-                "
+              Trabaja con nosotros
+            </h3>
+            <p>
+              Puedes enviarnos tu CV a la dirección de email
+              <a
+                href="mailto:info@fourblue.com"
+                style="text-decoration: underline; color: inherit;"
+                >info@fourblue.com</a
               >
-                Trabaja con nosotros
-              </h3>
-              <p
-                style="
-                  font-size: 1.5rem;
-                  font-weight: 500;
-                  margin: 0;
-                "
-              >
-                Puedes enviarnos tu CV a la dirección de email
-                <a
-                  href="mailto:info@fourblue.com"
-                  style="text-decoration: underline; color: inherit;"
-                  >info@fourblue.com</a
-                >
-              </p>
-            </div>
-
-            <!-- Right column -->
-            <div
-              style="
-                display: flex;
-                flex-direction: column;
-                width: 50%; /* approximate */
-              "
-            >
-              <!-- Using <p> for text block -->
-              <p
-                style="
-                  font-size: 1.125rem; /* ~ text-lg to text-xl */
-                  line-height: 1.6;
-                  margin: 0;
-                "
-              >
-                <h4
-                  style="
-                    font-size: 1.875rem;
-                    font-weight: 500;
-                    margin: 0 0 1rem 0;
-                  "
-                >
-                  Vacantes disponibles:
-                </h4>
-                <br />
-                CONSULTORES FUNCIONALES LOGISTICA<br />
-                Consultores SAP con un mínimo de 6 años de experiencia en algunos
-                estos módulos: MM, SD, PP y/o WM, para nuestra oficina de Madrid.<br />
-                Se valorarán conocimientos en otras áreas SAP (financieras o
-                logísticas), experiencia en S/4 HANA y nivel de inglés alto.<br /><br />
-
-                CONSULTORES FUNCIONALES FINANZAS<br />
-                Consultores SAP con un mínimo de 6 años de experiencia en FI y/o CO,
-                para nuestra oficina de Madrid.<br />
-                Se valorarán conocimientos en otras áreas SAP (logísticas o
-                financieras), experiencia en S/4 HANA y nivel de inglés alto.<br />
-              </p>
-            </div>
+            </p>
           </div>
-        </div>
+
+          <!-- Right column -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+            "
+          >
+            <!-- Using <p> for text block -->
+            <p>
+              <h4
+                style="
+                  font-size: 1.875rem;
+                  font-weight: 500;
+                  margin: 0 0 1rem 0;
+                "
+              >
+                Vacantes disponibles:
+              </h4>
+              <br />
+              CONSULTORES FUNCIONALES LOGISTICA<br />
+              Consultores SAP con un mínimo de 6 años de experiencia en algunos
+              estos módulos: MM, SD, PP y/o WM, para nuestra oficina de Madrid.<br />
+              Se valorarán conocimientos en otras áreas SAP (financieras o
+              logísticas), experiencia en S/4 HANA y nivel de inglés alto.<br /><br />
+
+              CONSULTORES FUNCIONALES FINANZAS<br />
+              Consultores SAP con un mínimo de 6 años de experiencia en FI y/o CO,
+              para nuestra oficina de Madrid.<br />
+              Se valorarán conocimientos en otras áreas SAP (logísticas o
+              financieras), experiencia en S/4 HANA y nivel de inglés alto.<br />
+            </p>
+          </div>
+        </article>
       </section>
 
       <!-- Footer -->
@@ -654,8 +449,7 @@
         style="
           width: 100%;
           font-size: 1.25rem; /* text-xl ~ 1.25rem */
-          --tw-bg-opacity: 1;
-          background-color: rgb(29 29 27 / var(--tw-bg-opacity));
+          background-color: rgb(29 29 27);
           padding-top: 5rem;
           padding-bottom: 5rem;
           color: white;
@@ -694,7 +488,6 @@
                   font-size: 0.875rem;
                   color: #929292;
                   margin-bottom: 1rem;
-                  margin-top: 0;
                 "
               >
                 Follow us
@@ -757,8 +550,7 @@
                   style="
                     font-size: 1rem;
                     color: #929292;
-                    padding-bottom: 1rem;
-                    margin: 0;
+                    padding-bottom: 1rem; 
                     border-bottom: 1px solid #494949;
                   "
                 >
@@ -767,7 +559,6 @@
                 <p
                   style="
                     margin-top: 1rem;
-                    margin-bottom: 0;
                   "
                 >
                   <a
