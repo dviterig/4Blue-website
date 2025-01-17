@@ -17,7 +17,7 @@
           left: 0;
           right: 0;
           pointer-events: auto;
-          transition: background-color 0.8s ease;
+          transition: background-color 0.4s ease;
         "
       >
         <!-- Navigation Container -->
@@ -116,13 +116,34 @@
       <!-- Optional: Minimal JS for scrolling behavior -->
       <script>
         const navbar = document.getElementById('navbar');
+
+        // Calculate 1vh in pixels once, e.g. each time the window is resized:
+        let oneVH = window.innerHeight / 100;
+
+        // (Optional) If you want the comparison to update when resizing:
+        window.addEventListener('resize', () => {
+          oneVH = window.innerHeight / 100;
+        });
+
         window.addEventListener('scroll', () => {
           const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-          if (currentScroll < 120) {
-            navbar.classList.remove('bg-white');
+
+          // For 100vh, multiply oneVH by 100:
+          if (currentScroll <= (oneVH * 100)/3) {
+            navbar.classList.remove('bg-white', 'bg-opacity');
             navbar.classList.add('bg-transparent');
-          } else {
-            navbar.classList.remove('bg-transparent');
+          }
+          // For 200vh, compare to oneVH * 200, and so on.
+          else if (currentScroll > (oneVH * 100)/3 && currentScroll < oneVH * 200) {
+            navbar.classList.remove('bg-opacity', 'bg-transparent');
+            navbar.classList.add('bg-white');
+          }
+          else if (currentScroll > oneVH * 200 && currentScroll < oneVH * 300) {
+            navbar.classList.remove('bg-white', 'bg-transparent');
+            navbar.classList.add('bg-opacity');
+          }
+          else {
+            navbar.classList.remove('bg-opacity', 'bg-transparent');
             navbar.classList.add('bg-white');
           }
         });
@@ -252,7 +273,14 @@
       </header>
 
       <!-- Section: Quiénes somos -->
-      <section id="somos" style="width: 100%; margin: 0 auto;">
+      <section
+        id="somos"
+        style="
+          width: 100%;
+          margin: 0 auto;
+          min-height: 100vh;
+        "
+      >
         <div
           style="
             padding-left: 3rem;
@@ -300,8 +328,6 @@
               style="
                 position: relative;
                 width: 100%;
-                max-width: 1280px;
-                height: 508px;
                 overflow: hidden;
               "
             >
@@ -330,7 +356,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.5rem;
               "
             >
               <h4
@@ -360,11 +386,11 @@
       <section
         id="ofrecemos"
         style="
-          --tw-bg-opacity: 1;
-          background-color: rgb(246 246 246 / var(--tw-bg-opacity));
+          background-color: rgb(246, 246, 246);
           width: 100%;
           margin: 0 auto;
           display: block;
+          min-height: 100vh;
         "
       >
         <div
@@ -524,6 +550,7 @@
         style="
           padding-top: 8rem;
           padding-bottom: 8rem;
+          min-height: 100vh;
         "
       >
         <div

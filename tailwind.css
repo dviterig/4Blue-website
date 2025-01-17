@@ -105,19 +105,11 @@ body {
   summary {
     display: list-item;
   }
-  blockquote,
-  dl,
-  dd,
   h1,
   h2,
   h3,
   h4,
-  h5,
-  h6,
-  hr,
-  figure,
-  p,
-  pre {
+  p {
     margin: 0;
   }
   fieldset {
@@ -184,4 +176,8 @@ body {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-opacity {
+  background-color: rgb(246, 246, 246);
 }
