@@ -88,41 +88,77 @@
             <span class="chevron">></span>
           </a>
         </nav>
+
+        <script>
+          const navbar = document.getElementById('navbar');
+
+          // Calculate 1vh in pixels once, e.g. each time the window is resized:
+          let oneVH = window.innerHeight / 100;
+
+          // (Optional) If you want the comparison to update when resizing:
+          window.addEventListener('resize', () => {
+            oneVH = window.innerHeight / 100;
+          });
+
+          window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll <= (oneVH * 100)/3) {
+              navbar.classList.remove('bg-white', 'bg-opacity');
+              navbar.classList.add('bg-transparent');
+            }
+            else if (currentScroll > (oneVH * 100)/3 && currentScroll < oneVH * 200) {
+              navbar.classList.remove('bg-opacity', 'bg-transparent');
+              navbar.classList.add('bg-white');
+            }
+            else if (currentScroll >= oneVH * 200 && currentScroll < oneVH * 300) {
+              navbar.classList.remove('bg-white', 'bg-transparent');
+              navbar.classList.add('bg-opacity');
+            }
+            else {
+              navbar.classList.remove('bg-opacity', 'bg-transparent');
+              navbar.classList.add('bg-white');
+            }
+          });
+        </script>
       </div>
 
-      <!-- Optional: Minimal JS for scrolling behavior -->
-      <script>
-        const navbar = document.getElementById('navbar');
+      <!-- Hamburger button (visible on smaller screens) -->
+      <div id="hamburger-button">
+        <button aria-label="Open Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
-        // Calculate 1vh in pixels once, e.g. each time the window is resized:
-        let oneVH = window.innerHeight / 100;
+      <!-- Sidebar (slides in on small screens when hamburger is clicked) -->
+      <div id="sidebar">
+        <a href="#somos">Quiénes somos</a>
+        <a href="#ofrecemos">Qué ofrecemos</a>
+        <a href="#trabaja">Trabaja con nosotros</a>
+        <a href="#contacto">Contacto</a>
 
-        // (Optional) If you want the comparison to update when resizing:
-        window.addEventListener('resize', () => {
-          oneVH = window.innerHeight / 100;
-        });
+        <script>
+          // Get references to sidebar and all its <a> links
+          const sidebar = document.getElementById('sidebar');
+          const sidebarLinks = document.querySelectorAll('#sidebar a');
 
-        window.addEventListener('scroll', () => {
-          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+          // Toggle sidebar on hamburger button click
+          const hamburgerButton = document.getElementById('hamburger-button');
+          const hamburgerBtn = hamburgerButton.querySelector('button');
+          hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+          });
 
-          if (currentScroll <= (oneVH * 100)/3) {
-            navbar.classList.remove('bg-white', 'bg-opacity');
-            navbar.classList.add('bg-transparent');
-          }
-          else if (currentScroll > (oneVH * 100)/3 && currentScroll < oneVH * 200) {
-            navbar.classList.remove('bg-opacity', 'bg-transparent');
-            navbar.classList.add('bg-white');
-          }
-          else if (currentScroll >= oneVH * 200 && currentScroll < oneVH * 300) {
-            navbar.classList.remove('bg-white', 'bg-transparent');
-            navbar.classList.add('bg-opacity');
-          }
-          else {
-            navbar.classList.remove('bg-opacity', 'bg-transparent');
-            navbar.classList.add('bg-white');
-          }
-        });
-      </script>
+          // Hide the sidebar whenever a link inside it is clicked
+          sidebarLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              sidebar.classList.remove('open');
+            });
+          });
+        </script>
+      </div>
 
       <!-- Header with hero video -->
       <header style="position: relative;">
@@ -374,6 +410,33 @@
               El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.
             </p>
           </div>
+
+          <script>
+            // Toggle "Nuestra Visión" paragraphs
+            const toggleText = document.getElementById("toggle-text");
+            const toggleButton = document.getElementById("toggle-text-button");
+
+            const texts = [
+              "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
+              "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
+              "El cambio se ha convertido en el principal motor de evolución de los mercados. Las compañías, para garantizar el éxito de sus proyectos, buscan cada vez más colaboradores con una sólida y contrastada experiencia en proyectos de transformación, que sean capaces de hablar su mismo idioma y que sean sensibles a sus necesidades reales. En FOUR BLUE abordamos los proyectos de nuestros clientes bajo una perspectiva global e integradora, basándonos en los inductores fundamentales del cambio.",
+              "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
+            ];
+
+            let currentIndex = 0;
+
+            toggleButton.addEventListener("click", () => {
+              toggleText.style.opacity = 0; // Fade out
+              setTimeout(() => {
+                currentIndex = (currentIndex + 1) % texts.length; // Next text
+                toggleText.textContent = texts[currentIndex];
+                toggleText.style.opacity = 1; // Fade in
+              }, 300);
+            });
+
+            // Dynamic Year
+            document.getElementById("year").textContent = new Date().getFullYear();
+          </script>
         </article>
       </section>
 
@@ -583,33 +646,5 @@
         </div>
       </footer>
     </main>
-
-    <!-- Optional: Minimal JS for dynamic year + text toggle logic -->
-    <script>
-      // Toggle "Nuestra Visión" paragraphs
-      const toggleText = document.getElementById("toggle-text");
-      const toggleButton = document.getElementById("toggle-text-button");
-
-      const texts = [
-        "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
-        "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
-        "El cambio se ha convertido en el principal motor de evolución de los mercados. Las compañías, para garantizar el éxito de sus proyectos, buscan cada vez más colaboradores con una sólida y contrastada experiencia en proyectos de transformación, que sean capaces de hablar su mismo idioma y que sean sensibles a sus necesidades reales. En FOUR BLUE abordamos los proyectos de nuestros clientes bajo una perspectiva global e integradora, basándonos en los inductores fundamentales del cambio.",
-        "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
-      ];
-
-      let currentIndex = 0;
-
-      toggleButton.addEventListener("click", () => {
-        toggleText.style.opacity = 0; // Fade out
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % texts.length; // Next text
-          toggleText.textContent = texts[currentIndex];
-          toggleText.style.opacity = 1; // Fade in
-        }, 300);
-      });
-
-      // Dynamic Year
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>
