@@ -143,19 +143,32 @@
           // Get references to sidebar and all its <a> links
           const sidebar = document.getElementById('sidebar');
           const sidebarLinks = document.querySelectorAll('#sidebar a');
-
-          // Toggle sidebar on hamburger button click
           const hamburgerButton = document.getElementById('hamburger-button');
           const hamburgerBtn = hamburgerButton.querySelector('button');
-          hamburgerBtn.addEventListener('click', () => {
+
+          // Toggle sidebar on hamburger button click
+          hamburgerBtn.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevents event bubbling to document
             sidebar.classList.toggle('open');
           });
 
-          // Hide the sidebar whenever a link inside it is clicked
+          // Hide the sidebar when a link inside it is clicked
           sidebarLinks.forEach((link) => {
             link.addEventListener('click', () => {
               sidebar.classList.remove('open');
             });
+          });
+
+          // Close sidebar when clicking outside of it
+          document.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !hamburgerButton.contains(event.target)) {
+              sidebar.classList.remove('open');
+            }
+          });
+
+          // Prevent sidebar clicks from closing it
+          sidebar.addEventListener('click', (event) => {
+            event.stopPropagation();
           });
         </script>
       </div>
@@ -270,8 +283,7 @@
                             margin: 0;
                           "
                           _uid="78ac1d43-80ac-4742-aa1c-51e947a0301d"
-                        >
-                          Bienvenido a FourBlue
+                        >Bienvenido a FourBlue
                         </h1>
                       </div>
                     </div>
@@ -428,7 +440,13 @@
           const toggleButton = document.getElementById("toggle-text-button");
           const toggleState = document.getElementById("toggle-state");
 
-          toggleButton.addEventListener("click", () => {
+          toggleButton.addEventListener("click", handleToggle);
+          toggleButton.addEventListener("touchend", handleToggle);
+
+          function handleToggle(event) {
+            // Prevent touch delay issues
+            event.preventDefault();
+
             // Fade out both text and image
             toggleText.style.opacity = 0;
             toggleImage.style.opacity = 0;
@@ -444,11 +462,14 @@
               // Update the "1/4" display
               toggleState.textContent = `${currentIndex + 1}/${texts.length}`;
 
+              // Force button to lose focus (this prevents the freeze issue)
+              toggleButton.blur();
+
               // Fade in
               toggleText.style.opacity = 1;
               toggleImage.style.opacity = 1;
-            }, 300); // match the CSS transition duration
-          });
+            }, 300); // Match the CSS transition duration
+          }
         </script>
       </section>
 
