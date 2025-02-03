@@ -90,13 +90,34 @@ body {
   margin: auto;
 }
 
-#content-ofrecemos {
-  flex-direction: row;
+#ofrecemos {
+  background-color: rgb(246, 246, 246);
 }
 
-#content-ofrecemos img {
-  width: 30%;
+#content-ofrecemos {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#text-ofrecemos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#toggle-state {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* pushes this element to the far right */
+  margin-right: 25px;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+#toggle-image {
+  width: 60%;
   height: auto;
+  transition: opacity 0.3s ease;
 }
 
 #toggle-text-button {
@@ -199,10 +220,11 @@ body {
 
   #content-ofrecemos {
     flex-direction: column;
+    gap: 1rem;
   }
 
   #content-ofrecemos img {
-    width: 50%;
+    width: 100%;
   }
 
   #toggle-text-button {

@@ -320,30 +320,19 @@
       </section>
 
       <!-- Section: Qué ofrecemos -->
-      <section
-        id="ofrecemos"
-        style="
-          background-color: rgb(246, 246, 246);
-        "
-      >
-        <h2>
-          Qué ofrecemos
-        </h2>
+      <section id="ofrecemos">
+        <h2>Qué ofrecemos</h2>
 
         <!-- Content Block -->
         <article id="content-ofrecemos">
           <!-- Image block -->
-          <img src="images/rocks.png">
+          <img
+            id="toggle-image"
+            src="images/nuestra-vision-1.png"
+          />
 
           <!-- Text content -->
-          <div
-            style="
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              gap: 1rem;
-            "
-          >
+          <div id="text-ofrecemos">
             <div style="display: flex;">
               <h4
                 style="
@@ -405,39 +394,62 @@
                   />
                 </svg>
               </button>
+              <span id="toggle-state">
+                1/4
+              </span>
             </div>
-            <p id="toggle-text">
+            <p id="toggle-text" style="transition: opacity 0.3s ease;">
               El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.
             </p>
           </div>
-
-          <script>
-            // Toggle "Nuestra Visión" paragraphs
-            const toggleText = document.getElementById("toggle-text");
-            const toggleButton = document.getElementById("toggle-text-button");
-
-            const texts = [
-              "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
-              "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
-              "El cambio se ha convertido en el principal motor de evolución de los mercados. Las compañías, para garantizar el éxito de sus proyectos, buscan cada vez más colaboradores con una sólida y contrastada experiencia en proyectos de transformación, que sean capaces de hablar su mismo idioma y que sean sensibles a sus necesidades reales. En FOUR BLUE abordamos los proyectos de nuestros clientes bajo una perspectiva global e integradora, basándonos en los inductores fundamentales del cambio.",
-              "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
-            ];
-
-            let currentIndex = 0;
-
-            toggleButton.addEventListener("click", () => {
-              toggleText.style.opacity = 0; // Fade out
-              setTimeout(() => {
-                currentIndex = (currentIndex + 1) % texts.length; // Next text
-                toggleText.textContent = texts[currentIndex];
-                toggleText.style.opacity = 1; // Fade in
-              }, 300);
-            });
-
-            // Dynamic Year
-            document.getElementById("year").textContent = new Date().getFullYear();
-          </script>
         </article>
+
+        <script>
+          // Text paragraphs
+          const texts = [
+            "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
+            "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
+            "El cambio se ha convertido en el principal motor de evolución de los mercados. Las compañías, para garantizar el éxito de sus proyectos, buscan cada vez más colaboradores con una sólida y contrastada experiencia en proyectos de transformación, que sean capaces de hablar su mismo idioma y que sean sensibles a sus necesidades reales. En FOUR BLUE abordamos los proyectos de nuestros clientes bajo una perspectiva global e integradora, basándonos en los inductores fundamentales del cambio.",
+            "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
+          ];
+
+          // Image paths
+          const images = [
+            "images/nuestra-vision-1.png",
+            "images/nuestra-vision-2.jpg",
+            "images/nuestra-vision-3.jpg",
+            "images/nuestra-vision-4.jpg"
+          ];
+
+          let currentIndex = 0;
+
+          const toggleText = document.getElementById("toggle-text");
+          const toggleImage = document.getElementById("toggle-image");
+          const toggleButton = document.getElementById("toggle-text-button");
+          const toggleState = document.getElementById("toggle-state");
+
+          toggleButton.addEventListener("click", () => {
+            // Fade out both text and image
+            toggleText.style.opacity = 0;
+            toggleImage.style.opacity = 0;
+
+            setTimeout(() => {
+              // Update index
+              currentIndex = (currentIndex + 1) % texts.length;
+
+              // Update text and image
+              toggleText.textContent = texts[currentIndex];
+              toggleImage.src = images[currentIndex];
+
+              // Update the "1/4" display
+              toggleState.textContent = `${currentIndex + 1}/${texts.length}`;
+
+              // Fade in
+              toggleText.style.opacity = 1;
+              toggleImage.style.opacity = 1;
+            }, 300); // match the CSS transition duration
+          });
+        </script>
       </section>
 
       <!-- Section: Trabaja con nosotros -->
