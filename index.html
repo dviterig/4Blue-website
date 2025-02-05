@@ -417,7 +417,6 @@
         </article>
 
         <script>
-          // Text paragraphs
           const texts = [
             "El actual entorno macroeconómico global requiere de soluciones tecnológicas cada vez más complejas y dinámicas. La rapidez de los cambios y la propia inercia de las grandes empresas de servicios profesionales deriva en una industrialización de la profesión, perdiendo a menudo el foco en las necesidades de negocio con una visión completa, ofreciendo una propuesta de valor fuertemente apalancada en la solución técnica y exigiendo de los clientes una mayor dedicación para asegurar el cumplimiento de sus expectativas.",
             "Ahora, más que nunca, es clave la correcta integración de las necesidades reales de negocio con el marco tecnológico que dé soporte a estas necesidades. Nuestra visión, por tanto, se centra en incorporar valor a nuestros clientes a través de nuestra experiencia real en los propios clientes, la optimización de sus procesos de negocio y la implantación de las soluciones tecnológicas más convenientes, siempre bajo una visión global.",
@@ -425,7 +424,6 @@
             "Somos unos absolutos convencidos que en consultoría existe un valor diferencial: las personas que realizan los trabajos. Es la capacidad de los miembros del equipo lo que determina el éxito del proyecto. También estamos convencidos de la necesidad de ser flexibles, incorporar recursos en función de las necesidades del proyecto y ser ágiles en ello es fundamental para el éxito del mismo. La experiencia nos otorga conocimiento y credenciales en nuestros clientes, por ello, en FOUR BLUE trabajamos con clientes que nos conozcan, que hayan visto nuestro desempeño previamente, que deseen seguir trabajando con nosotros. Porque ni sabemos ni queremos hacer las cosas de otra manera."
           ];
 
-          // Image paths
           const images = [
             "images/nuestra-vision-1.png",
             "images/nuestra-vision-2.jpg",
@@ -444,10 +442,9 @@
           toggleButton.addEventListener("touchend", handleToggle);
 
           function handleToggle(event) {
-            // Prevent touch delay issues
             event.preventDefault();
 
-            // Fade out both text and image
+            // Fade out current text and image
             toggleText.style.opacity = 0;
             toggleImage.style.opacity = 0;
 
@@ -455,20 +452,26 @@
               // Update index
               currentIndex = (currentIndex + 1) % texts.length;
 
-              // Update text and image
+              // Update text (no flicker issue with text)
               toggleText.textContent = texts[currentIndex];
-              toggleImage.src = images[currentIndex];
-
-              // Update the "1/4" display
               toggleState.textContent = `${currentIndex + 1}/${texts.length}`;
-
-              // Force button to lose focus (this prevents the freeze issue)
               toggleButton.blur();
 
-              // Fade in
-              toggleText.style.opacity = 1;
-              toggleImage.style.opacity = 1;
-            }, 300); // Match the CSS transition duration
+              // Preload new image in memory
+              const newSrc = images[currentIndex];
+              const tempImage = new Image();
+
+              // When the preload finishes, switch the actual image src and fade in
+              tempImage.onload = () => {
+                toggleImage.src = newSrc;
+                // Fade in both text and image
+                toggleText.style.opacity = 1;
+                toggleImage.style.opacity = 1;
+              };
+
+              // Start loading
+              tempImage.src = newSrc;
+            }, 300); // match your CSS transition duration (0.3s)
           }
         </script>
       </section>
