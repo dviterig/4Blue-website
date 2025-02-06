@@ -1,12 +1,16 @@
 /*******************
  * NAVBAR LOGIC
  *******************/
+// Grab navbar element
 const navbar = document.getElementById('navbar');
 
 // Calculate 1vh in pixels initially
 let oneVH = window.innerHeight / 100;
 
-// Recalculate on resize
+// Keep track of last scroll position
+let lastScrollTop = 0;
+
+// Recalculate 1vh on window resize
 window.addEventListener('resize', () => {
   oneVH = window.innerHeight / 100;
 });
@@ -15,11 +19,22 @@ window.addEventListener('resize', () => {
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-  if (currentScroll <= (oneVH * 100)/3) {
+  // 1) Hide/Show navbar on scroll
+  if (currentScroll > lastScrollTop) {
+    // Scrolling down --> hide the navbar
+    navbar.style.transform = "translateY(-100%)";
+  } else {
+    // Scrolling up --> show the navbar
+    navbar.style.transform = "translateY(0)";
+  }
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Avoid negative values
+
+  // 2) Change navbar background based on scroll position
+  if (currentScroll <= (oneVH * 100) / 3) {
     navbar.classList.remove('bg-white', 'bg-opacity');
     navbar.classList.add('bg-transparent');
   }
-  else if (currentScroll > (oneVH * 100)/3 && currentScroll < oneVH * 200) {
+  else if (currentScroll > (oneVH * 100) / 3 && currentScroll < oneVH * 200) {
     navbar.classList.remove('bg-opacity', 'bg-transparent');
     navbar.classList.add('bg-white');
   }

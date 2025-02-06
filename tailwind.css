@@ -88,7 +88,9 @@ body {
   padding-right: 3rem;
   width: 100%;
   justify-content: space-between;
-  transition: background-color 0.4s ease;
+
+  /* Combine both transitions into one line */
+  transition:transform 0.3s ease-in-out;
 }
 
 #content-somos {
