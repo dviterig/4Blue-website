@@ -100,9 +100,9 @@ const images = [
 
 let currentIndex = 0;
 
-const toggleText = document.getElementById("toggle-text");
-const toggleImage = document.getElementById("toggle-image");
-const toggleButton = document.getElementById("toggle-text-button");
+const toggleText = document.getElementById("ofrecemos-toogle-text");
+const toggleImage = document.getElementById("ofrecemos-image");
+const toggleButton = document.getElementById("ofrecemos-button");
 const toggleState = document.getElementById("toggle-state");
 
 if (toggleButton) {
