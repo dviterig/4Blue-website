@@ -279,11 +279,6 @@ body {
   transition: opacity 0.3s ease;
 }
 
-#trabaja-content {
-  flex-direction: row;
-  margin-top: 100px;
-}
-
 #hamburger-button {
   display: none;
   position: fixed;
@@ -387,11 +382,6 @@ body {
     margin-left: 20px;
     width: 35px;
     height:35px;
-  }
-
-  #trabaja-content {
-    flex-direction: column;
-    margin-top: 40px;
   }
 
   body {
